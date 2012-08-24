@@ -3,7 +3,7 @@ header('Content-Type: text/html; charset=UTF-8');
 	
 include('phpQuery-onefile.php');
 
-/*criar uma fun褯 para fazermos requisições via cURL para depois tratarmos com o phpQuery*/
+/*criar uma função para fazermos requisições via cURL para depois tratarmos com o phpQuery*/
 function simple_curl($url,$post=array(),$get=array()){
 	$url = explode('?',$url,2);
 	if(count($url)===2){
