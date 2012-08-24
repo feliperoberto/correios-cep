@@ -67,40 +67,27 @@ $(#id elemento.classe).html() em jQuery é em PHP pq(#id elemento.classe)->html()
 */
 
 //então temos nosso logradouro, bairro, cidade/uf e cep
-
-$dados = 
-array(
-	'logradouro'=> trim(pq('.ctrlcontent table tr:eq(2) td:eq(0)')->text()),
-	'bairro'=> trim(pq('.ctrlcontent table tr:eq(2) td:eq(1)')->text()),
-	'cidade'=> trim(pq('.ctrlcontent table tr:eq(2) td:eq(2)')->text()),
-	'uf'=> trim(pq('.ctrlcontent table tr:eq(2) td:eq(3)')->text()),
-	'cep'=> trim(pq('.ctrlcontent table tr:eq(2) td:eq(4)')->text())
-);
-
-/*
-consulta na versão mobile dos correios - saiu do ar por um tempo
-$html = simple_curl('http://m.correios.com.br/movel/buscaCepConfirma.do',array(
-	'cepEntrada'=>$cep,
-	'tipoCep'=>'',
-	'cepTemp'=>'',
-	'metodo'=>'buscarCep'
-));
-
-phpQuery::newDocumentHTML($html, $charset = 'utf-8');
-
-$dados = 
-array(
-	'logradouro'=> trim(pq('.caixacampobranco .resposta:contains("Logradouro: ") + .respostadestaque:eq(0)')->html()),
-	'bairro'=> trim(pq('.caixacampobranco .resposta:contains("Bairro: ") + .respostadestaque:eq(0)')->html()),
-	'cidade/uf'=> trim(pq('.caixacampobranco .resposta:contains("Localidade / UF: ") + .respostadestaque:eq(0)')->html()),
-	'cep'=> trim(pq('.caixacampobranco .resposta:contains("CEP: ") + .respostadestaque:eq(0)')->html())
-);
-
-$dados['cidade/uf'] = explode('/',$dados['cidade/uf']);
-$dados['cidade'] = trim($dados['cidade/uf'][0]);
-$dados['uf'] = trim($dados['cidade/uf'][1]);
-unset($dados['cidade/uf']);
-*/
-
-
+$dados = array();
+$c = 0;
+$t = count(pq('.ctrlcontent table tr'));
+//die(print_r($t,true));
+foreach(pq('.ctrlcontent table tr') as $tr){
+	if($c > 1 && $c < ((int)$t - 1)){
+		$dados[] = array(
+			'logradouro'=> trim(pq($tr)->find('td:eq(0)')->text()),
+			'bairro'=> trim(pq($tr)->find('td:eq(1)')->text()),
+			'cidade'=> trim(pq($tr)->find('td:eq(2)')->text()),
+			'uf'=> trim(pq($tr)->find('td:eq(3)')->text()),
+			'cep'=> trim(pq($tr)->find('td:eq(4)')->text())
+		);
+	}
+	$c += 1;
+}
+//die(print_r($dados,true));
+if(count($dados)){
+	$cep = str_replace('-','',trim($cep));
+	if(8 === strlen($cep) && is_numeric($cep)){
+		$dados = $dados[0];
+	}
+}
 die(json_encode($dados));
