@@ -1,0 +1,24 @@
+{
+    "name": "feliperoberto/non-official-correios-api",
+    "description": "Brazilian Correios's non-official API",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Felipe Roberto",
+            "email": "contato@feliperoberto.com.br"
+        }
+    ],
+    "minimum-stability": "stable",
+    "support": {
+        "issues": "https://github.com/feliperoberto/correios-cep/issues",
+        "source": "https://github.com/feliperoberto/correios-cep"
+    },
+    "require": {
+      "electrolinux/phpquery": "^0.9.6"
+    },
+    "autoload": {
+        "psr-4" : {
+          "Correios\\": "src/Correios"
+        }
+    }
+}
