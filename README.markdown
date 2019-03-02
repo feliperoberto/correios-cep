@@ -74,7 +74,6 @@ curl -X GET http://127.0.0.1/?endereco=av%20paulista
         "logradouro": "Avenida Paulista\u00a0",
         "uf": "BA\u00a0"
     },
-    ...,
     {
         "bairro": "Jardim Panorama\u00a0",
         "cep": "13504-654",
@@ -117,10 +116,24 @@ curl -X GET http://127.0.0.1/?codigo_rastreio=OG490654336BR
 
 ## Deploy on Heroku
 De forma resumida.
-```console
+``` console
 git clone https://github.com/feliperoberto/correios-cep.git
 heroku login
 git push heroku master
 heroku open
 ```
 Mais detalhes em https://devcenter.heroku.com/articles/getting-started-with-php?singlepage=true
+
+## Using with Docker
+Seguem os comandos para docker run, compose ou stack.
+``` console
+docker run --rm -d -p 80:80 feliperoberto/non-official-correios-api
+```
+ou
+``` console
+docker-compose up
+```
+ou
+``` console
+docker stack deploy -c docker-compose.yml non-official-correios-api
+```

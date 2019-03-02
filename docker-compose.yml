@@ -1,0 +1,5 @@
+version: '3.7'
+
+services:
+  api:
+    image: 'feliperoberto/non-official-correios-api:latest'
