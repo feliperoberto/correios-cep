@@ -23,10 +23,10 @@ header('Content-type: text/html; charset=UTF-8');
 </head>
 <body>
 	<h1>API não oficial dos Correios</h1>
-	<p>Servidor rest para web scrap desenvolvido em PHP para consulta de cep, enderço, e encomenda direto no site dos Correios.</p>
+	<p>Servidor rest para web scrap desenvolvido em PHP para consulta de CEP, endereço e rastreamento de encomenda, direto no site dos Correios.</p>
 
 	<h2>Consulta de CEP</h2>
-	<p>Envia-se o <code>string</code> do CEP desejado e é retornado um objeto com as propriedades do endereço. <br>Caso não seja localizado, será retornado <code>null</code></p>
+	<p>Envia-se a <code>string</code> do CEP desejado e é retornado um objeto com as propriedades do endereço. <br>Caso não seja localizado, será retornado <code>null</code>.</p>
 	<pre>curl -X GET http://127.0.0.1/?cep=01001001</pre>
 	<pre>{
     "bairro": "S\u00e9\u00a0",
@@ -37,7 +37,7 @@ header('Content-type: text/html; charset=UTF-8');
 }</pre>
 
 	<h2>Pesquisa de endereço</h2>
-	<p>Envia-se a <code>string</code> do endereço a ser procurado e será retornado uma lista de objetos de endereço.<br> Caso não há haja resultados a resposta será uma lista vazia.</p>
+	<p>Envia-se a <code>string</code> do endereço a ser procurado e será retornado uma lista de objetos de endereço.<br> Caso não há haja resultados, a resposta será uma lista vazia.</p>
 	<pre>curl -X GET http://127.0.0.1/?endereco=av%20paulista</pre>
 	<pre>[
     {
